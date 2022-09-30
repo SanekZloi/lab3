@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Lab3_Barilyuk</title>
+</head>
+<body>
+	<form name="form">
+		<input type="text" id="key" placeholder="Введите числа или буквы"/>
+		<input type="submit" value="Запуск" onclick="matchString();">
+	</form>
+	<script type="text/javascript">
+		function matchString() 
+		{
+			var str = document.getElementById('key').value; //переменная, которая берется из inputa, то , что введет пользователь
+			let result = str.match(/^([a-z]*|[0-9]*)$/) //переменная, в которую помещается результат регулярки, в шаблоне содержится ^ и $ которые соответствуют началу и концу строки; дальше следует поиск символов в интервале, любой символ от "a" до "z", * с парамтром от нуля и более, | или цифры от 0 до 9 c теми же параметрами.
+				if (result == null) //Если регулярное выражение вернет null, то выведится false
+				{
+					return alert("false");
+				}
+			let first = result[0]; //в нулевой ячейке если регулярное выражение вернула true, содержится весь вывод регулярного выражения. Поместил в переменную чтобы в цикле работать с содержимым.
+			for (var i = 0; i < first.length - 1; ++i) //цикл который проверяет на наличие поочередного порядка цифр или символов
+			{
+				let a = first[i].charCodeAt(0) + 1; // в A содержится индекс юникода первого символа вывода регулярного выражения
+				let b = first[i+1].charCodeAt(0); // в b второго соответственно
+				if (a !== b) // если эти символы не равны друг другу, то выводит false
+				{
+					return alert("false");
+				}
+			}
+				alert("true"); //аналогично true
+		}
+</script>
+</body>
+</html>
